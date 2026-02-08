@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For Khushal ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:linear-gradient(135deg,#ff5f8d,#1a0610);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Arial, sans-serif;
+  color:white;
+  text-align:center;
+  overflow:hidden;
+}
+
+.screen{display:none;padding:20px;}
+.active{display:block;}
+
+.heart{
+  font-size:80px;
+  animation:pulse 1.3s infinite;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.3)}
+  100%{transform:scale(1)}
+}
+
+.card{
+  background:rgba(255,255,255,0.15);
+  padding:25px;
+  border-radius:20px;
+  backdrop-filter: blur(8px);
+  max-width:350px;
+}
+
+#text{
+  font-size:16px;
+  line-height:1.7;
+}
+
+.signature{
+  margin-top:15px;
+  font-weight:bold;
+}
+
+.photo{
+  width:130px;
+  height:130px;
+  border-radius:50%;
+  object-fit:cover;
+  margin-bottom:15px;
+  border:3px solid rgba(255,255,255,0.7);
+}
+
+.floating-heart{
+  position:absolute;
+  bottom:-20px;
+  font-size:18px;
+  animation:floatUp 6s linear infinite;
+  opacity:0.6;
+}
+
+@keyframes floatUp{
+  from{transform:translateY(0)}
+  to{transform:translateY(-110vh)}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADING -->
+<div id="loading" class="screen active">
+  <div class="heart">❤️</div>
+  <h3>Loading something special…</h3>
+</div>
+
+<!-- MAIN -->
+<div id="main" class="screen">
+
+<img class="photo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QCMRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUAAAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAIAAIdpAAQAAAABAAAAWgAAAAAAAABIAAAAAQAAAEgAAAABAAOgAQADAAAAAQABAACgAgAEAAAAAQAAA2CgAwAEAAAAAQAABgAAAAAA" />
+
+<div class="card">
+  <div id="text"></div>
+  <div class="signature" id="sign"></div>
+</div>
+
+</div>
+
+<script>
+const message =
+"Khushal…\n\n" +
+"kabhi socha nahi tha ki koi itna quietly meri zindagi ka hissa ban jaayega.\n\n" +
+"is duniya ke shor mein,\n" +
+"tu meri sabse sukoon bhari jagah hai.\n\n" +
+"jab sab kuch heavy lagta hai na,\n" +
+"bas tera chehra yaad aata hai…\n" +
+"aur sab theek lagne lagta hai.\n\n" +
+"aaj main thoda unwell hoon,\n" +
+"par phir bhi ye tujhe bhejna zaroori laga…\n" +
+"kyunki tu hi meri strength hai ❤️";
+
+const from = "— Aryan";
+
+let i = 0;
+const speed = 40;
+
+setTimeout(()=>{
+  document.getElementById("loading").classList.remove("active");
+  document.getElementById("main").classList.add("active");
+  typeText();
+  hearts();
+},2500);
+
+function typeText(){
+  if(i < message.length){
+    document.getElementById("text").innerHTML +=
+      message.charAt(i) === "\n" ? "<br>" : message.charAt(i);
+    i++;
+    setTimeout(typeText, speed);
+  } else {
+    document.getElementById("sign").innerText = from;
+  }
+}
+
+function hearts(){
+  setInterval(()=>{
+    const h = document.createElement("div");
+    h.className = "floating-heart";
+    h.innerText = "❤️";
+    h.style.left = Math.random()*100 + "vw";
+    h.style.fontSize = (12 + Math.random()*20) + "px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  },500);
+}
+</script>
+
+</body>
+</html>
